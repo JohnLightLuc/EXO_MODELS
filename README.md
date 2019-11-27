@@ -64,3 +64,14 @@ Il requiert deux paramètres obligatoires : DecimalField.max_digits et DecimalFi
 
 . __UUIDField__ : Un champ pour stocker des identifiants universels uniques (UUID). Utilise la classe Python UUID. Avec PostgreSQL, le type de données uuid est employé, sinon c’est un type char(32).
 
+
+* __Migrate and migrations__
+Les migrations sont le moyen utilisé par Django pour propager les modifications apportées à vos modèles (ajout d'un champ, suppression d'un modèle, etc.) dans le schéma de votre base de données. Ils sont conçus pour être généralement automatiques, mais vous aurez besoin de savoir quand effectuer les migrations, quand les exécuter et les problèmes courants que vous pourriez rencontrer.
+Il existe plusieurs commandes que vous utiliserez pour interagir avec les migrations et la gestion du schéma de base de données par Django:
+- migrate, responsable de l’application et de la non application des migrations.
+- makemigrations, responsable de la création de nouvelles migrations en fonction des modifications apportées à vos modèles. -
+_ sqlmigrate, qui affiche les instructions SQL d’une migration.
+_ showmigrations, qui répertorie les migrations d’un projet et leur statut.
+Vous devez considérer les migrations comme un système de contrôle de version pour votre schéma de base de données. makemigrationsest responsable de la compression de vos modifications de modèle dans des fichiers de migration individuels - de la même manière que les validations - et migrateest responsable de leur application à votre base de données.
+Les fichiers de migration de chaque application résident dans un répertoire «migrations» à l'intérieur de cette application et sont conçus pour être validés et distribués dans le cadre de sa base de code. Vous devriez les créer une fois sur votre machine de développement, puis exécuter les mêmes migrations sur les machines de vos collègues, vos machines de transfert et, éventuellement, vos machines de production.
+
